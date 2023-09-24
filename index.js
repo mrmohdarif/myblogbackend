@@ -20,9 +20,8 @@ app.use(express.json())
 app.use(cors({
     origin: '*'
 }))
-const url=`mongodb+srv://alliswell5solution:pwEfVxVH8xxIb9pg@cluster2.e9awp9j.mongodb.net/?retryWrites=true&w=majority`
-// const url = `mongodb://127.0.0.1:27017`
-
+//const url=`mongodb+srv://alliswell5solution:1q0jLQcWHPExht3F@cluster0.0fi4re1.mongodb.net/?retryWrites=true&w=majority`
+ const url = `mongodb://127.0.0.1:27017`
 mongoose.connect(url)
 app.use('/register', async (req, res) => {
     const { username, password } = req.body
@@ -166,15 +165,15 @@ const postdoc=await Post.findById(id)
 // console.log(postdoc)
 res.send({"postdoc":postdoc,"verefy":verifytoken.user_id})
 })
-app.post('/post/delete/:id',async(req,res)=>{
-    const data=req.body
-    const itemId=data.id.id
-     console.log(data.id.id)
-     const postDoc= await Post.find()
-    // console.log(postDoc)
- Post.deleteOne({ "_id": new ObjectId(`${itemId}`)})
-    //   res.send(postDoc)
-    })
+// app.post('/post/delete/:id',async(req,res)=>{
+//     const data=req.body
+//     const itemId=data.id.id
+//      console.log(data.id.id)
+//      const postDoc= await Post.find()
+//     // console.log(postDoc)
+//  Post.deleteOne({ "_id": new ObjectId(`${itemId}`)})
+//     //   res.send(postDoc)
+//     })
 // const PORT=process.env.PORT
 app.listen(8080,() => {
     console.log(`you are 8080`);
@@ -183,5 +182,5 @@ app.listen(8080,() => {
 
 //pwEfVxVH8xxIb9pg
 //mongodb+srv://alliswell5solution:pwEfVxVH8xxIb9pg@cluster2.e9awp9j.mongodb.net/?retryWrites=true&w=majority
-// username: 'alliswell5solution',
-// password: 'pwEfVxVH8xxIb9pg',
+
+// password: '1q0jLQcWHPExht3F',
