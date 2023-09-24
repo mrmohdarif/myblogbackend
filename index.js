@@ -6,12 +6,13 @@ const dotenv = require('dotenv')
 dotenv.config();
 const secret = "mohdarif"
 const bcrypt = require('bcrypt')
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser')
 const User = require('./model/user')
 const jwt = require('jsonwebtoken')
 const multer = require('multer')
 const uploadMiddleware = multer({ dest: 'uploads/' })
+const connectDb=require('./connect')
 const app = express()
 app.use('/uploads',express.static(__dirname+'/uploads'))
 
@@ -20,9 +21,6 @@ app.use(express.json())
 app.use(cors({
     origin: '*'
 }))
-//const url=`mongodb+srv://alliswell5solution:1q0jLQcWHPExht3F@cluster0.0fi4re1.mongodb.net/?retryWrites=true&w=majority`
- const url = `mongodb://127.0.0.1:27017`
-mongoose.connect(url)
 app.use('/register', async (req, res) => {
     const { username, password } = req.body
     try {
@@ -175,12 +173,11 @@ res.send({"postdoc":postdoc,"verefy":verifytoken.user_id})
 //     //   res.send(postDoc)
 //     })
 // const PORT=process.env.PORT
+connectDb()
 app.listen(8080,() => {
     console.log(`you are 8080`);
  
 })
-
-//pwEfVxVH8xxIb9pg
-//mongodb+srv://alliswell5solution:pwEfVxVH8xxIb9pg@cluster2.e9awp9j.mongodb.net/?retryWrites=true&w=majority
-
-// password: '1q0jLQcWHPExht3F',
+//9tP40gluuJGsVIJo,
+//user=>blogdatabase
+//mongodb+srv://blogdatabase:<password>@cluster0.r2dmp9r.mongodb.net/?retryWrites=true&w=majority
