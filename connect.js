@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const url=`mongodb+srv://blogdatabase:9tP40gluuJGsVIJo@cluster0.r2dmp9r.mongodb.net/?retryWrites=true&w=majority`
-
+ const url=`mongodb+srv://blogdatabase:9tP40gluuJGsVIJo@cluster0.r2dmp9r.mongodb.net/?retryWrites=true&w=majority`
+// const url="mongodb://localhost:27017"
 const connectDb=()=>{
     mongoose.connect(url).then(()=>{
     console.log("you are conected to db")

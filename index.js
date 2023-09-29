@@ -1,4 +1,5 @@
 const express = require('express')
+const mongoose = require('mongoose')
 const fs = require('fs')
 const Post = require('./model/post')
 const cors = require('cors')
@@ -150,30 +151,35 @@ if(req.file)
 app.get('/', async (req, res) => {
     const data = await Post.find().populate('auther',['username'])
     console.log(__dirname+'/uploads');//directorey name
-    res.send(data)
+    // res.send(data)
+    res.send("hello")
 })
-app.post('/post/:id',async(req,res)=>{
-const data=req.body
-console.log(data.token)
-const verifytoken = jwt.verify(data.token, secret)
-// console.log(verifytoken.user_id)
-const id=data.id.id
-// console.log(id)
-const postdoc=await Post.findById(id)
-// console.log(postdoc)
-res.send({"postdoc":postdoc,"verefy":verifytoken.user_id})
+app.post('/edit',async(req,res)=>{
+   
+    const data=req.body
+   const id=data.paramId
+
+   const postDoc=await Post.findById(id)
+res.send(postDoc)
 })
-// app.post('/post/delete/:id',async(req,res)=>{
-//     const data=req.body
-//     const itemId=data.id.id
-//      console.log(data.id.id)
-//      const postDoc= await Post.find()
-//     // console.log(postDoc)
-//  Post.deleteOne({ "_id": new ObjectId(`${itemId}`)})
-//     //   res.send(postDoc)
+// })
+// app.delete('/:id',async(req,res)=>{
+//     const data=req.params
+//     console.log(data);
+//      res.send(data)
+//     // try{
+//     //    const result= Post.deleteOne({ _id: new ObjectID(deleteId)})
+//     //    res.send("delete sucessfullt",result)
+//     // }
+//     // catch(err)
+//     // {
+//     //     res.send(err)
+//     // }
+  
+  
 //     })
 // const PORT=process.env.PORT
-connectDb()
+ connectDb()
 app.listen(8080,() => {
     console.log(`you are 8080`);
  
