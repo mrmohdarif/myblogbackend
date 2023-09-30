@@ -151,8 +151,8 @@ if(req.file)
 app.get('/', async (req, res) => {
     const data = await Post.find().populate('auther',['username'])
     console.log(__dirname+'/uploads');//directorey name
-    // res.send(data)
-    res.send("hello")
+     res.send(data)
+   
 })
 app.post('/edit',async(req,res)=>{
    
